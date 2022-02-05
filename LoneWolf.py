@@ -1,6 +1,6 @@
 import random
 import math
-
+import time
 
 K = 999
 CRT = [[[0,K],[0,K],[0,8],[0,6],[1,6],[2,5],[3,5]],
@@ -90,6 +90,7 @@ class combat(object):
             self.ene.changeStat(eneMinus)
             self.pro.showStat()
             self.ene.showStat()
+            time.sleep(1)
     
     def Versus(self):
         print("\n\033[1;33;40mCombat Start\033[0m:")
