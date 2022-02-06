@@ -75,7 +75,7 @@ class combat(object):
         self.ene = ene
         
     def versus(self):
-        random.seed(self.pro.CS * self.pro.EP)
+        random.seed(time.time())
         diff = self.pro.CS - self.ene.CS
         diff = diff if diff <= 0 else 0
         bias = random.randint(0, 9) - 1
@@ -84,6 +84,9 @@ class combat(object):
         if diff <= -11: column = 0
         else: column = 6 - math.ceil(abs(diff)/2)
         eneMinus, proMinus = CRT[raw][column][0], CRT[raw][column][1]
+        self.pro.showStat()
+        self.ene.showStat()
+        time.sleep(1)
         while not self.pro.deadCheck() and not self.ene.deadCheck():
             print("\n", end="")
             self.pro.changeStat(proMinus)
@@ -99,6 +102,10 @@ class combat(object):
         
 if __name__ == "__main__":
     lw = protag(22, 19)
-    anEnemy = enemy(50, 12, "rogue")
-    acombat = combat(lw, anEnemy)
-    acombat.Versus()
+    rogue = enemy(50, 12, "rogue")
+    dragon = enemy(100, 10, "drake")
+    assassin = enemy(20, 30, "assassin")
+    combat1 = combat(lw, assassin)
+    combat1.Versus()
+    combat2 = combat(lw, rogue)
+    combat2.Versus()
